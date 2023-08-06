@@ -49,15 +49,25 @@ p
     transform-origin: 50% 50%;
     transition:.3s;
     transform-box: fill-box;
-    z-index: 1;
+    position: relative;
+    transition: ease 0.3s;
 }
 
 .new:hover{
+    fill: aqua;
     -webkit-transform: scale(1.5);
     -webkit-transform-origin: 50% 50%;
     -webkit-transition:.3s;
     transform: scale(1.5);
     transform-origin: 50% 50%;
     transition:.3s;
-    z-index: 4;
+    position: relative;
+    cursor:pointer;
+}
+
+.svg-container {
+    position: relative;
+    width: 1000px;
+    height: 1000px;
+    transition: transform 0.3s, top ease 0.5s;
 }
