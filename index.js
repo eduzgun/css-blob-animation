@@ -53,9 +53,24 @@ paths.forEach(function (item) {
 
 let svg2 = document.querySelector("#svg_2")
 let svg3 = document.querySelector("#svg_3")
+let blob_container = document.querySelector("#blob-div")
 
 svg2.addEventListener("click", function() {
-    console.log("clicked") 
+    console.log("new10");
+    svg2.setAttribute("class", "new3")
 });
 
+svg3.addEventListener("click", function() {
+    blob_container.setAttribute("class", "new2");
+    console.log("clicked second blob");
+});
 
+let drawer = document.getElementsByClassName('js-drawer')[0];
+drawer.addEventListener('drawerIsOpen', function(event){
+  // drawer is open
+  // event.detail is the element that triggered the drawer opening
+});
+
+drawer.addEventListener('drawerIsClose', function(event){
+  // drawer is close
+});

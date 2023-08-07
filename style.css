@@ -49,7 +49,7 @@ p
     transform-origin: 50% 50%;
     transition:.3s;
     transform-box: fill-box;
-    position: relative;
+    
     transition: ease 0.3s;
 }
 
@@ -61,13 +61,39 @@ p
     transform: scale(1.5);
     transform-origin: 50% 50%;
     transition:.3s;
-    position: relative;
+    
     cursor:pointer;
+}
+
+.slideout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 35em;
+    background-color: white;
+    border-right: 0.063em solid lighten(gray-light, 30%);
+    transform: translateX(-100%);
 }
 
 .svg-container {
     position: relative;
-    width: 1000px;
-    height: 1000px;
+    width: 800px;
+    height: 800px;
     transition: transform 0.3s, top ease 0.5s;
+    
 }
+
+.new2 {
+    background-color: black;
+}
+
+.new3 {
+    fill: green;
+}
+#blob-div {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+}
+
