@@ -23,6 +23,7 @@ paths.forEach(function(item,index){
 var svg = document.querySelector(".svg-container");
 var pathGroup = svg.querySelector(".path-group");
 var paths = Array.from(pathGroup.querySelectorAll("path"));
+let click1 = document.querySelector("#click1")
 
 function bringToFront(path) {
     pathGroup.removeChild(path);
@@ -53,24 +54,24 @@ paths.forEach(function (item) {
 
 let svg2 = document.querySelector("#svg_2")
 let svg3 = document.querySelector("#svg_3")
-let blob_container = document.querySelector("#blob-div")
+let drawerClosed = document.querySelector(".drawer--open-right")
 
-svg2.addEventListener("click", function() {
-    console.log("new10");
-    svg2.setAttribute("class", "new3")
+svg2.addEventListener("click", function () {
+    console.log("clicked")
+    svg2.classList.toggle("svg-onDrawer");
+    drawerClosed.classList.toggle("open");
 });
 
-svg3.addEventListener("click", function() {
-    blob_container.setAttribute("class", "new2");
-    console.log("clicked second blob");
-});
-
-let drawer = document.getElementsByClassName('js-drawer')[0];
+let drawer = document.getElementsByClassName('drawer--open-right')[0];
 drawer.addEventListener('drawerIsOpen', function(event){
   // drawer is open
   // event.detail is the element that triggered the drawer opening
+    console.log("drawer open")
 });
 
 drawer.addEventListener('drawerIsClose', function(event){
   // drawer is close
+    console.log("drawer open")
 });
+
+
