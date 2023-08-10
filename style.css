@@ -40,6 +40,7 @@ p
 }
 */
 
+
 section {
     align-items: center;
     justify-content: center;
@@ -95,33 +96,29 @@ body, html {
     box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.1); /* Add shadow to the left side */
 }
 
+.drawer--hidden {
+    right: -60vw;
+    opacity: 0;
+    pointer-events: none;
+}
 
 .drawer--open-right {
     background-color: #ddffd9;
-    right: 0;
+    right: -60vw;
     min-width: 60vw;
     height: 100vh;
     position: absolute;
-
-    display: none; /* Start with drawer hidden */
-    pointer-events: none; /* Disable interactions */
+    opacity: 0;
+    pointer-events: none;
     box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s cubic-bezier(.97, .1, .18, .99), opacity 0.3s;
 }
-
 
 .drawer--open-right.open {
-    display: block;
-     /* Show drawer when it has the 'open' class */
-    pointer-events: auto; /* Enable interactions */
-    background-color: #ddffd9;
+    opacity: 1;
     right: 0;
-    min-width: 60vw;
-    height: 100vh;
-    position: absolute;
-    pointer-events: none; /* Disable interactions */
-    box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.1);
+    pointer-events: auto;
 }
-
 
 .svg-container {
     position: fixed;
