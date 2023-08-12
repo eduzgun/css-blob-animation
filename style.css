@@ -1,10 +1,6 @@
 /*
 *
-{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 
 section 
 {
@@ -40,11 +36,39 @@ p
 }
 */
 
-
-section {
-    align-items: center;
-    justify-content: center;
+*
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    height: 100%;
 }
+
+#mainsvg {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #67a9b3;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.svg-container {
+    position: relative;
+    transition: transform 0.3s, top ease 0.5s;
+    width: 500px;
+    height: 500px;
+    display: flex;
+    transition: margin-left 0.3s;
+}
+
+.svg-container.left {
+    margin-left: -50%;
+}
+
 .new{
     fill: red;
     -webkit-transform: scale(1);
@@ -83,19 +107,6 @@ body, html {
     overflow: hidden;
 }
 
-.slideout {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 35em;
-    background-color: white;
-    border-right: 0.063em solid lighten(gray-light, 30%);
-    transform: translateX(0);
-    transition: transform 0.3s;
-    box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.1); /* Add shadow to the left side */
-}
-
 .drawer--hidden {
     right: -60vw;
     opacity: 0;
@@ -107,10 +118,16 @@ body, html {
     right: -60vw;
     min-width: 60vw;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     opacity: 0;
     pointer-events: none;
     box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s cubic-bezier(.97, .1, .18, .99), opacity 0.3s;
+}
+
+/* Add new class for sliding out */
+.drawer--close-right {
+    /* Existing properties */
     transition: right 0.3s cubic-bezier(.97, .1, .18, .99), opacity 0.3s;
 }
 
@@ -120,16 +137,6 @@ body, html {
     pointer-events: auto;
 }
 
-.svg-container {
-    position: fixed;
-    transition: transform 0.3s, top ease 0.5s;
-    width: 500px;
-    height: 500px;
-    left: 0;
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
 
 .svg-onDrawer {
     fill: green;

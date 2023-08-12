@@ -66,7 +66,7 @@ paths.forEach(function (item) {
     var pathLength = item.getTotalLength();
     item.setAttribute("stroke-dasharray", pathLength);
     item.setAttribute("stroke-dashoffset", pathLength);
-    item.classList.add("new");
+    item.classList.toggle("new");
 
     item.addEventListener("mouseover", function () {
         bringToFront(item);
@@ -76,6 +76,15 @@ paths.forEach(function (item) {
         restoreOrder(item);
     });
 });
+
+function resetSVGProperties() {
+    paths.forEach(function (item) {
+        console.log(item)
+        console.log(item.classList)
+        var pathLength = item.getTotalLength();
+        item.classList.toggle("new");
+    });
+}
 
 let svg2 = document.querySelector("#svg_2")
 let svg3 = document.querySelector("#svg_3")
@@ -87,15 +96,10 @@ svg2.addEventListener("click", function () {
     if (activeSVG == svg3){
         closeActiveDrawer();
     }
-    //sWvg2.classList.toggle("svg-onDrawer");
-    
     activeSVG = svg2; // Set active SVG
-
-    setTimeout(() => {  updateDrawerContent(); }, 200);
+    svg.classList.add("left")
+    setTimeout(() => {  updateDrawerContent(activeSVG); }, 300);
 });
-
-svg3.classList.remove("svg-onDrawer");
-svg2.classList.remove("svg-onDrawer");
 
 svg3.addEventListener("click", function () {
     console.log("clicked svg3");
@@ -103,15 +107,14 @@ svg3.addEventListener("click", function () {
         closeActiveDrawer();
     }
     activeSVG = svg3; // Set active SVG
-    //drawerClosed.classList.toggle("open");
-    setTimeout(() => {  updateDrawerContent(); }, 200);
+    setTimeout(() => {  updateDrawerContent(activeSVG); }, 300);
     
 });
 
 function closeActiveDrawer() {
     drawerClosed.classList.remove("open")
 }
-function updateDrawerContent() {
+function updateDrawerContent(activeSVG) {
     console.log("cleared content")
      // Clear content for section2
     section1.innerHTML = ""; // Clear content for section1
@@ -126,27 +129,17 @@ function updateDrawerContent() {
     drawerClosed.classList.toggle("open");
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    drawer.classList.add("open");
-    /*
-    setTimeout(function() {
-        const drawer = document.querySelector(".drawer--open-right");
-        drawer.classList.add("open");
-    }, 1000); // Adjust the delay as needed
-    */
-    closeActiveDrawer()
-});
 
 let drawer = document.getElementsByClassName('drawer--open-right')[0];
-drawer.addEventListener('drawerIsOpen', function(event){
-  // drawer is open
-  // event.detail is the element that triggered the drawer opening
-    console.log("drawer open")
-});
-
-drawer.addEventListener('drawerIsClose', function(event){
-  // drawer is close
-    console.log("drawer open")
-});
 
 
+function simulateClick() {
+    const event = new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        view: window
+    });
+    svg2.dispatchEvent(event);
+}
+
+// Call the simulateClick function to trigger the click event
