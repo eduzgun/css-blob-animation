@@ -92,28 +92,64 @@ let drawerClosed = document.querySelector(".drawer--open-right")
 let activeSVG = null;
 
 svg2.addEventListener("click", function () {
-    console.log("clicked number 2")
-    if (activeSVG == svg3){
+    console.log("clicked number 2", activeSVG)
+    if (activeSVG != svg2){
         closeActiveDrawer();
+        svg.classList.add("left")
+        setTimeout(() => {  updateDrawerContent(activeSVG); }, 200);
+    } else {
+        closeActiveDrawer();
+        recentersvg();
+        activeSVG = null;
     }
     activeSVG = svg2; // Set active SVG
-    svg.classList.add("left")
-    setTimeout(() => {  updateDrawerContent(activeSVG); }, 300);
 });
+
+
 
 svg3.addEventListener("click", function () {
     console.log("clicked svg3");
-    if (activeSVG == svg2){
+    if (activeSVG != svg3){
         closeActiveDrawer();
+        
+        svg.classList.add("left")
+    setTimeout(() => {  updateDrawerContent(activeSVG); }, 200);
+    } else {
+        closeActiveDrawer();
+        recentersvg();
+        activeSVG = null;
     }
     activeSVG = svg3; // Set active SVG
-    setTimeout(() => {  updateDrawerContent(activeSVG); }, 300);
     
 });
 
-function closeActiveDrawer() {
-    drawerClosed.classList.remove("open")
+function recentersvg(){
+    svg.classList.remove("left");
 }
+
+function closeActiveDrawer() {
+    if (activeSVG) {
+        activeSVG.classList.remove("left");
+    }
+    const drawerClosed = document.querySelector(".drawer--open-right.open");
+    if (drawerClosed) {
+        drawerClosed.classList.remove("open");
+        svg.classList.remove("left")
+    }
+    activeSVG = null;
+}
+
+document.addEventListener("click", function (event) {
+    const drawer = document.querySelector(".drawer--open-right.open");
+    
+    // Check if the click target is outside the drawer
+    if (drawer && !drawer.contains(event.target)) {
+        closeActiveDrawer();
+    } 
+});
+
+const drawerContent = document.querySelector(".drawer-content");
+
 function updateDrawerContent(activeSVG) {
     console.log("cleared content")
      // Clear content for section2
@@ -121,7 +157,9 @@ function updateDrawerContent(activeSVG) {
     section2.innerHTML = "";
     if (activeSVG === svg2) {
         console.log("added content 2")
-        section1.innerHTML = contentForSVG2;
+    
+        drawerContent.classList.remove("hidden");
+        //section1.innerHTML = contentForSVG2;
     } else if (activeSVG === svg3) {
         console.log("addeded content 3")
         section2.innerHTML = contentForSVG3;
@@ -129,17 +167,5 @@ function updateDrawerContent(activeSVG) {
     drawerClosed.classList.toggle("open");
 }
 
-
-let drawer = document.getElementsByClassName('drawer--open-right')[0];
-
-
-function simulateClick() {
-    const event = new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-        view: window
-    });
-    svg2.dispatchEvent(event);
-}
 
 // Call the simulateClick function to trigger the click event

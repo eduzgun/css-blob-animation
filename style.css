@@ -156,5 +156,11 @@ body, html {
     background-color: green;
     transition: ease 0.3s;
 }
+.drawer-grid {
+    display: flex;
+}
 
+.hidden {
+    display: none;
 
+}
