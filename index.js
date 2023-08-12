@@ -91,81 +91,75 @@ let svg3 = document.querySelector("#svg_3")
 let drawerClosed = document.querySelector(".drawer--open-right")
 let activeSVG = null;
 
+
+
+function openDrawer(svgElement) {
+    
+    // Clear content for both sections
+    section1.innerHTML = "";
+    section2.innerHTML = "";
+
+    if (svgElement === svg2) {
+        console.log("Opening svg2 content");
+        drawerContent.classList.remove("hidden");
+        section1.innerHTML = contentForSVG2;
+    } else if (svgElement === svg3) {
+        console.log("Opening svg3 content");
+        section2.innerHTML = contentForSVG3;
+    }
+
+    drawerClosed.classList.add("open");
+}
+
+const drawerContent = document.querySelector(".drawer-content");
+
+function closeDrawer() {
+    
+    drawerContent.classList.add("hidden");
+    drawerClosed.classList.remove("open");
+}
+// Call the simulateClick function to trigger the click event
 svg2.addEventListener("click", function () {
-    console.log("clicked number 2", activeSVG)
-    if (activeSVG != svg2){
-        closeActiveDrawer();
+    if (activeSVG !== svg2) {
+        closeDrawer();
+        setTimeout(() => {openDrawer(svg2); }, 200);
+        activeSVG = svg2;
         svg.classList.add("left")
-        setTimeout(() => {  updateDrawerContent(activeSVG); }, 200);
     } else {
-        closeActiveDrawer();
-        recentersvg();
+        closeDrawer();
+        svg.classList.remove("left");
         activeSVG = null;
     }
-    activeSVG = svg2; // Set active SVG
 });
-
 
 
 svg3.addEventListener("click", function () {
-    console.log("clicked svg3");
-    if (activeSVG != svg3){
-        closeActiveDrawer();
-        
+    if (activeSVG !== svg3) {
+        closeDrawer();
+        setTimeout(() => {openDrawer(svg3); }, 200);
+        activeSVG = svg3;
         svg.classList.add("left")
-    setTimeout(() => {  updateDrawerContent(activeSVG); }, 200);
     } else {
-        closeActiveDrawer();
-        recentersvg();
+        closeDrawer();
+        svg.classList.remove("left");
         activeSVG = null;
     }
-    activeSVG = svg3; // Set active SVG
-    
 });
-
-function recentersvg(){
-    svg.classList.remove("left");
-}
-
-function closeActiveDrawer() {
-    if (activeSVG) {
-        activeSVG.classList.remove("left");
-    }
-    const drawerClosed = document.querySelector(".drawer--open-right.open");
-    if (drawerClosed) {
-        drawerClosed.classList.remove("open");
-        svg.classList.remove("left")
-    }
-    activeSVG = null;
-}
 
 document.addEventListener("click", function (event) {
     const drawer = document.querySelector(".drawer--open-right.open");
     
-    // Check if the click target is outside the drawer
-    if (drawer && !drawer.contains(event.target)) {
-        closeActiveDrawer();
+    // Check if the click target is outside the drawer and svgs
+    if (drawer && !drawer.contains(event.target) && event.target !== svg2 && event.target !== svg3) {
+        closeDrawer();
+        svg.classList.remove("left");
+        activeSVG = null;
     } 
 });
 
-const drawerContent = document.querySelector(".drawer-content");
-
-function updateDrawerContent(activeSVG) {
-    console.log("cleared content")
-     // Clear content for section2
-    section1.innerHTML = ""; // Clear content for section1
-    section2.innerHTML = "";
-    if (activeSVG === svg2) {
-        console.log("added content 2")
-    
-        drawerContent.classList.remove("hidden");
-        //section1.innerHTML = contentForSVG2;
-    } else if (activeSVG === svg3) {
-        console.log("addeded content 3")
-        section2.innerHTML = contentForSVG3;
+window.addEventListener("resize", function () {
+    if (activeSVG) {
+        closeDrawer();
+        openDrawer(activeSVG);
     }
-    drawerClosed.classList.toggle("open");
-}
-
-
-// Call the simulateClick function to trigger the click event
+});
