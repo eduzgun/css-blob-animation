@@ -27,7 +27,7 @@ let section2 = document.querySelector("#section2");
 // Define template literals for the complex content
 const contentForSVG2 = `
     <div>
-        <h2>Complex Content for svg2</h2>
+        <h2 id="title5">Complex Content for svg2</h2>
         <p>This is the content related to svg2.</p>
         <p>It can include multiple elements and styling.</p>
     </div>
@@ -44,6 +44,9 @@ const contentForSVG3 = `
         </ul>
     </div>
 `;
+
+const text2 = document.createElement('p')
+text2.insertAdjacentText('beforeend', 'Here we go!')
 
 var svg = document.querySelector(".svg-container");
 var pathGroup = svg.querySelector(".path-group");
@@ -91,18 +94,19 @@ let svg3 = document.querySelector("#svg_3")
 let drawerClosed = document.querySelector(".drawer--open-right")
 let activeSVG = null;
 
+let sectionsvg1 = document.querySelector("#section1")
+const drawerContent = document.querySelector(".drawer-content");
 
-
-function openDrawer(svgElement) {
-    
+function openDrawer0(svgElement) {
     // Clear content for both sections
     section1.innerHTML = "";
     section2.innerHTML = "";
-
     if (svgElement === svg2) {
         console.log("Opening svg2 content");
-        drawerContent.classList.remove("hidden");
-        section1.innerHTML = contentForSVG2;
+        //drawerContent.classList.remove("hidden");
+        sectionsvg1.setAttribute("class", "sectionsvg1")
+        //section1.innerHTML = contentForSVG2;
+        //section1.appendChild(text2);
     } else if (svgElement === svg3) {
         console.log("Opening svg3 content");
         section2.innerHTML = contentForSVG3;
@@ -111,7 +115,22 @@ function openDrawer(svgElement) {
     drawerClosed.classList.add("open");
 }
 
-const drawerContent = document.querySelector(".drawer-content");
+function openDrawer(svgElement) {
+    // Hide all content first
+    document.querySelectorAll(".drawer-content").forEach(content => {
+        content.classList.add("hidden");
+    });
+
+    if (svgElement === svg2) {
+        console.log("Opening svg2 content");
+        document.querySelector("#content-svg2").classList.remove("hidden");
+    } else if (svgElement === svg3) {
+        console.log("Opening svg3 content");
+        document.querySelector("#content-svg3").classList.remove("hidden");
+    }
+
+    drawerClosed.classList.add("open");
+}
 
 function closeDrawer() {
     

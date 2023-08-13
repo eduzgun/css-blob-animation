@@ -164,3 +164,16 @@ body, html {
     display: none;
 
 }
+
+
+.sectionsvg1 {
+    display: flex;
+}
+
+#title5 {
+    color: green;
+}
+
+p {
+    color: green;
+}
