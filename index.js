@@ -115,6 +115,7 @@ function openDrawer0(svgElement) {
     drawerClosed.classList.add("open");
 }
 
+
 function openDrawer(svgElement) {
     // Hide all content first
     document.querySelectorAll(".drawer-content").forEach(content => {
@@ -124,11 +125,14 @@ function openDrawer(svgElement) {
     if (svgElement === svg2) {
         console.log("Opening svg2 content");
         document.querySelector("#content-svg2").classList.remove("hidden");
+        //const text5 = document.createElement('p')
+        //text5.insertAdjacentText('beforeend', 'Here we go!')
+        //drawerClosed.insertAdjacentElement("beforeend", text5)
+        //document.querySelector("#content-sv2 > p").set
     } else if (svgElement === svg3) {
         console.log("Opening svg3 content");
         document.querySelector("#content-svg3").classList.remove("hidden");
     }
-
     drawerClosed.classList.add("open");
 }
 
