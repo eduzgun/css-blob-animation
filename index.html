@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script defer type="text/javascript" src="index.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 <body>
@@ -21,7 +22,20 @@
     <section class="drawer--open-right" id="drawer-1">
             <div class="drawer-content hidden" id="content-svg2">
                 <!-- SVG2 content -->
-                <h2>Complex Content for svg2</h2>
+                <h2>The history of Redania</h2>
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="assets/bridge1.jpg" alt="" /></div>
+                        <div class="swiper-slide"><img src="assets/city1.jpg" alt="" /></div>
+                        <div class="swiper-slide"><img src="assets/statue1.jpg" alt=""  /></div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                
+                
+
                 <div class="drawer-grid">
                     <img src="assets/bridge1.jpg" alt="" />
                     <img src="assets/city1.jpg" alt="" />
@@ -35,6 +49,6 @@
             </div>
     </section>
     
-    
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </body>
 </html> 

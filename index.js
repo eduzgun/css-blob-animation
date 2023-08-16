@@ -186,3 +186,22 @@ window.addEventListener("resize", function () {
         openDrawer(activeSVG);
     }
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    var swiper = new Swiper(".mySwiper", {
+
+        spaceBetween: 0,
+        fade: true,
+        loop: true,
+        grabCursor: true,
+        pagination: {
+            el: ".swiper-pagination",
+            dynamicBullets: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+});
